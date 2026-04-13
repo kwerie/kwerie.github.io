@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const spaceMono = Space_Mono({
     variable: "--font-space-mono",
@@ -20,8 +21,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${spaceMono.variable} antialiased bg-zinc-50 dark:bg-black`}>
-                {children}
+            <body className={`${spaceMono.variable} antialiased bg-zinc-50 dark:bg-black text-black dark:text-white relative min-h-[100dvh] transition`}>
+                <ThemeProvider>
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );
