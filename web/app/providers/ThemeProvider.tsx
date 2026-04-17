@@ -40,20 +40,15 @@ export function useTheme() {
     return context;
 }
 
-// TODO: annoying white flash in the beninging
 export const ThemeProvider = (props: ThemeProviderProps) => {
-    const [theme, setTheme] = useState<Theme>(getPreferredTheme());
-    const [mounted, setMounted] = useState<boolean>(false);
+    const [theme, setTheme] = useState<Theme>('light');
 
     useEffect(() => {
-        const preferred = getPreferredTheme();
-        setTheme(preferred);
-        setMounted(true);
+        const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        setTheme(current);
     }, []);
 
     useEffect(() => {
-        if (!mounted) return;
-
         if (theme === "dark") {
             document.documentElement.classList.add("dark");
         }
@@ -62,14 +57,11 @@ export const ThemeProvider = (props: ThemeProviderProps) => {
         }
 
         localStorage.setItem(LOCAL_STORAGE_KEY, theme);
-    }, [theme, mounted]);
+    }, [theme]);
 
     const toggleTheme = () => {
         setTheme((prev) => (prev === "light" ? "dark" : "light"));
     };
-
-    // Prevent hydration mismatch
-    if (!mounted) return null;
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>

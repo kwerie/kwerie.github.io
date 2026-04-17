@@ -20,8 +20,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={`${spaceMono.variable} antialiased bg-zinc-50 dark:bg-black text-black dark:text-white relative min-h-[100dvh] transition`}>
+        <html lang="en" suppressHydrationWarning>
+            <head>
+                <script src="/theme-init.js" />
+            </head>
+            <body className={`${spaceMono.variable} antialiased bg-zinc-50 dark:bg-primary text-primary dark:text-zinc-50 relative min-h-[100dvh] transition`}>
                 <ThemeProvider>
                     {children}
                 </ThemeProvider>
