@@ -7,7 +7,7 @@ export default function Home() {
             <Nav />
 
             <div className="hidden md:inline-block sticky top-30 -translate-x-10 translate-y-1/2">
-                <Socials />
+                <Socials className="flex-col" />
             </div>
         </div>
     );

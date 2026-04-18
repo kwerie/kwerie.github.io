@@ -6,14 +6,14 @@ import * as React from 'react';
 function SocialLink({ href, label, icon }: { href: string; label: string; icon: IconProp }) {
     return (
         <a href={href} aria-label={label} className='w-6 h-6 text-primary dark:text-zinc-50 hover:opacity-80 transition-opacity' target='_blank'>
-            <FontAwesomeIcon icon={icon} size={'sm'} />
+            <FontAwesomeIcon icon={icon} size={'xl'} />
         </a>
     );
 }
 
-export function Socials(): React.ReactNode {
+export function Socials({ className = "" }: { className?: string } = {}): React.ReactNode {
     return (
-        <div className="flex gap-2 md:flex-col">
+        <div className={`flex gap-2 ${className}`}>
             <SocialLink href="https://github.com/kwerie" label="GitHub" icon={faGithub} />
             <SocialLink href="https://www.linkedin.com/in/ricohermsen" label="LinkedIn" icon={faLinkedin} />
         </div>
